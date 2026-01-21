@@ -1,0 +1,141 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Mea+Culpa&family=Shippori+Mincho+B1&display=swap');
+
+/* ---------------- CSS Variables ---------------- */
+:root {
+	/* ----- Colors ----- */
+	--background-color: #ffffff;
+	--text-color: #000000;
+	
+	/* ----- Fonts ----- */
+	--font-header: "Mea Culpa", sans-serif;
+	--font-serif: "Shippori Mincho B1";
+	--font-p: "Google Sans", sans-serif;
+
+	--font-size-h1: 10rem;
+	--line-height-h1: 1em;
+
+	--font-size-summary: 1.8rem;
+
+	--font-size-h2: 2.5rem;
+	--line-height-h2: 1em;
+	--letter-spacing-h2: .03em;
+
+	--font-size-blockquote: 2.2rem;
+	--line-height-blockquote: 1em;
+
+	--font-size-p: 1.2rem;
+	--line-height-p: 1.6em;
+
+	--font-size-footnote: 1.2rem;
+	--line-height-footnote: 1.3em;
+
+	--font-size-footer: .5rem;
+	--line-height-footer: 1em;
+
+	/* ----- Spacing ----- */
+	--xs-padding: .5rem;
+	--small-padding: 1rem;
+	--medium-padding: 2rem;
+	--large-padding: 3rem;
+	--xl-padding: 6rem;
+	--gap: 2rem;
+
+	/* ----- Media Queries ----- */
+
+
+	/* ----- Etc. ----- */
+	scroll-behavior: smooth;
+}
+
+/* ---------------- Body ---------------- */
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	position: relative;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	padding-block: var(--xl-padding);
+}
+
+/* ---------------- Typography ---------------- */
+h1,
+h2 {
+	font-family: var(--font-header);
+	font-weight: 500;
+	color: var(--border-color);
+}
+
+h1 {
+	font-size: var(--font-size-h1);
+	line-height: var(--line-height-h1);
+	hyphens: manual;
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	line-height: var(--line-height-h2);
+}
+
+summary {
+	font-family: var(--font-header);
+	font-weight: 400;
+	font-size: var(--font-size-summary);
+	color: var(--border-color);
+}
+
+p {
+	font-family: var(--font-p);
+	font-size: var(--font-size-p);
+	line-height: var(--line-height-p);
+	color: var(--text-color);
+	font-weight: 400;
+}
+
+blockquote {
+	color: var(--border-color);
+}
+
+footer,
+a {
+	font-family: var(--font-p);
+	/* font-size: var(--font-size-p); */
+	color: var(--text-color);
+}
+
+footer {
+	font-size: var(--font-size-footer);
+	line-height: var(--line-height-footer);
+}
+
+em,
+.italic {
+	font-style: italic;
+}
+
+/* ---------------- Main ---------------- */
+main {
+	padding-inline: var(--xl-padding);
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: auto;
+	grid-template-areas:
+		"h1"
+		"links";
+}
+
+#h1 {
+	grid-area: h1;
+}
+
+#links {
+	grid-area: links;
+}
+
+li {
+	padding-block: var(--medium-padding);
+	text-decoration: underline;
+
+}
