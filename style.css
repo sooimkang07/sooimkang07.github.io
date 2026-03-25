@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fascinate+Inline&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mea+Culpa&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Shippori+Mincho+B1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=DotGothic16&display=swap');
+
 
 /* ---------------- CSS Variables ---------------- */
 :root {
@@ -8,13 +10,13 @@
 	--color-text: #000000;
 	
 	/* ----- Fonts ----- */
-	--font-header: "Google Sans", sans-serif;
+	--font-header: "Darker Grotesque", sans-serif;
 	--font-manuscript: "Roboto Serif", serif;
 	--font-spread: "Fascinate Inline", sans-serif;
 	--font-binding: "DM Sans", sans-serif;
-	/* --font-links: ; */
+	--font-links: "DotGothic16", sans-serif;
 	/* --font-functions: ; */
-	--font-p: "Google Sans", sans-serif;
+	--font-p: "Darker Grotesque", sans-serif;
 
 	/* --font-size-h1: 10rem;
 	--line-height-h1: 1em; */
@@ -23,7 +25,7 @@
 	--line-height-h2: 1em;
 	--letter-spacing-h2: .03em;
 
-	--font-size-p: 1em;
+	--font-size-p: 2rem;
 	--line-height-p: 1.5em;
 
 	--font-size-footer: 1rem;
@@ -136,9 +138,8 @@ header > nav {
 
 /* ---------------- Main ---------------- */
 main > ol {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-auto-rows: repeat(5, auto);
+	display: flex;
+	flex-direction: column;
 	gap: var(--padding-xs);
 
 	/* I wanted to change the list-style markers to mimic "/0#", so I did ul li at first and manually wrote the numbers into the h2 of the li and wrapped them in spans to target and style them while still being nested in the h2s but then I wanted to keep the semantic structure of an ol, as these links are in a specific progression throughout the year, so I had to look up how to specifically target these list markers. */
@@ -253,11 +254,19 @@ main > ol {
 		&:nth-child(4) {
 			grid-column: 3 / 12;
 			grid-row: 4;
+
+			h2 > a:hover {
+				font-family: var(--font-links);	
+			}
 		}
 
 		&:nth-child(5) {
 			grid-column: 6 / 12;
 			grid-row: 5;
+
+			h2 > a:hover {
+				font-family: var(--font-functions);	
+			}
 		}
 	}
 }
