@@ -1,95 +1,96 @@
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fascinate+Inline&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mea+Culpa&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Shippori+Mincho+B1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=DotGothic16&display=swap');
 
 
-/* ---------------- CSS Variables ---------------- */
+/* ---------------- Design System Variables ---------------- */
 :root {
-	/* ----- Colors ----- */
-	--color-background: #FAFCFD;
+	/* Colors */
+	--color-bg: #FAFCFD;
 	--color-text: #000000;
-	
-	/* ----- Fonts ----- */
-	--font-header: "Darker Grotesque", sans-serif;
+	--color-accent: #E67A00;
+
+	/* Fonts */
+	--font-index: "Darker Grotesque", sans-serif;
 	--font-manuscript: "Roboto Serif", serif;
 	--font-spread: "Fascinate Inline", sans-serif;
 	--font-binding: "DM Sans", sans-serif;
 	--font-links: "DotGothic16", sans-serif;
 	/* --font-functions: ; */
-	--font-p: "Darker Grotesque", sans-serif;
 
-	/* --font-size-h1: 10rem;
-	--line-height-h1: 1em; */
+	/* Font size */
+	--fs-xs:   clamp(0.75rem, 1.2vw,  1rem);
+	--fs-sm:   clamp(0.875rem, 1.5vw, 1.125rem);
+	--fs-p: clamp(1rem, 2vw, 1.5rem);
+	--fs-h1:   clamp(3.5rem, 8vw, 7rem);
+	--fs-h2:   clamp(2.25rem, 6vw, 3rem);
 
-	--font-size-h2: 5rem;
-	--font-weight-h2: 600;
-	--line-height-h2: 1em;
-	--letter-spacing-h2: .03em;
-
-	--font-size-p: 2rem;
-	--font-weight-p: 400;
-	--line-height-p: 1.5em;
-
-	--font-size-footer: 1rem;
-	--line-height-footer: 1.5em;
-
-	/* ----- Spacing ----- */
-	--padding-xs: .5rem;
-	--padding-small: 1rem;
-	--padding-medium: 2rem;
-	--padding-large: 3rem;
-	--padding-xl: 6rem;
-	--gap: 2rem;
-
-	/* ----- Media Queries ----- */
-	@media (width < 1270px) {
-		--font-size-h2: 4rem;
+	@media (width >= 770px) {
+		--fs-h2: clamp(1.75rem, 3.5vw, 3rem);
 	}
 
-	/* ----- Etc. ----- */
+	/* Font weight */
+	--fw-light: 300;
+	--fw-reg: 400;
+	--fw-semi: 600;
+
+	/* Line height */
+	--lh-small: 1em;
+	--lh-big: 1.5em;
+
+	/* Spacing */
+	--space-xs:  0.25rem;
+	--space-sm:  0.75rem;
+	--space-md:  1.25rem;
+	--space-lg:  2rem;
+	--space-xl:  3.5rem;
+	--space-gap: 1.5rem;
+
+	/* Transition */
+	--transition: 0.3s ease;
 	scroll-behavior: smooth;
 }
 
+
 /* ---------------- Body ---------------- */
 body {
-	background-color: var(--color-background);
-	color: var(--text-color);
-	position: relative;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	gap: var(--padding-xl);
-	padding-block: var(--padding-medium);
-	padding-inline: var(--padding-xl);
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-index);
+	min-block-size: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	padding-block: var(--space-sm);
+	padding-inline: var(--space-md);
 
-	@media (width < 1270px) {
-		padding-inline: var(--padding-large);
+	@media (width >= 770px)  { 
+		padding-inline: var(--space-lg); 
+	}
+	
+	@media (width >= 1270px) { 
+		padding-inline: var(--space-xl);
+		padding-block-end: var(--space-xl);
 	}
 }
 
-/* ---------------- Typography ---------------- */
 
-
-
-/* ---------------- Underline Animation Hover Effect ---------------- */
-/* I wanted to animate the underline hover effect to come in from the left on hover then when released to go back from left to right.  */
-/* I referenced this: https://webdesign.tutsplus.com/css-hover-effects-for-inline-links--cms-37210t with the "Hover Effect 3: Passing Underline" to get the desired underline hover effect.  */
-/* Using the psuedo-element ::after on the link, I'm specifying that before any hover, the line exists at width: 100% at the bottom left corner with a height of .1rem, but the scaleX(0) squishes it to 0% width making it essentially invisible. Then on :hover scaleX(1) expands the width out to 100%, expanding from left to right anchored by the transform-origin, which switches and disappears into the left ::after the hover state with the scale(0) back to 0.  */
-header a,
-footer a {
+/* ---------------- Underline Hover ---------------- */
+nav ul a, footer a {
 	position: relative;
+	display: inline-block;
+	overflow: visible;
 
 	&::after {
 		content: "";
 		position: absolute;
 		inset-inline-start: 0;
-		inset-block-end: 0;
+		top: 100%;
+		margin-block-start: 0.2em;
 		inline-size: 100%;
-		block-size: .1rem;
-		background-color: var(--color-text);
-		transition: transform 0.3s ease;
+		block-size: 0.1em;
+		background-color: var(--color-accent);
 		transform: scaleX(0);
 		transform-origin: right;
+		transition: transform var(--transition);
 	}
 
 	&:hover::after {
@@ -99,218 +100,200 @@ footer a {
 }
 
 
-
-/* ---------------- Nav Bar ---------------- */
+/* ---------------- Header ---------------- */
 header > nav {
 	display: flex;
-	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	gap: var(--space-gap);
 
-	& > a {
-		font-family: var(--font-p);
-		font-size: var(--font-size-p);
-		line-height: var(--line-height-footer);
-		text-wrap: balance;
-		text-transform: uppercase;
+	a {
+		color: var(--color-accent);
+		font-size: var(--fs-p);
+		font-weight: var(--fw-semi);
+		line-height: var(--lh-big);
+	}
 
-		& > svg {
-			width: 40px;
-			height: 40px;
+	ul {
+		display: flex;
+		gap: var(--space-gap);
+		line-height: var(--lh-small);
+
+		li a { 
+			text-transform: uppercase; 
+			color: var(--color-text);
+			font-size: var(--fs-xs);
+			font-weight: var(--fw-semi);
+			line-height: var(--lh-small);
 		}
 	}
 }
-
-/* I just pulled this from my last binding project for now to remember to update and test this later.  */
-/* Tested with VoiceOver to ensure the SVG home logo reads as Home on a screenreader */
-.screen-reader {
-	font-size: var(--font-size-p);
-	font-weight: 500;
-	position: absolute;
-	inline-size: 1px;
-	block-size: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-inline-style: 0;
-} 
-
 
 /* ---------------- Main ---------------- */
-main > ol {
+main {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: var(--padding-xs);
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--space-lg);
 
-	/* I wanted to change the list-style markers to mimic "/0#", so I did ul li at first and manually wrote the numbers into the h2 of the li and wrapped them in spans to target and style them while still being nested in the h2s but then I wanted to keep the semantic structure of an ol, as these links are in a specific progression throughout the year, so I had to look up how to specifically target these list markers. */
-	/* In combo with this: https://css-tricks.com/almanac/properties/c/counter-increment/ and https://css-tricks.com/almanac/properties/c/counter-reset/ I learned how to use counters to incorporate a decimal-leading-zero and the /. */
-	/* From my understanding, the counter-reset: item creates a counter called item and sets it to 0 at the start of the ol. Then with counter-increment, anytime there's a new li, the counter goes up by 1. The ::before pseudonym for h2 as we've previously learned inserts content before h2 to the content I specified which is the text "/0" + the counter(item) we established earlier.  */
-	counter-reset: item;
-	
-	/* I wanted the other h2s to lower in opacity when hovering over the selected h2 to increase the affordance and make the hover state more obvious. */
-	/* I referenced this website example: https://www.30secondsofcode.org/css/s/sibling-fade/#:~:text=CSS%20%2D%20Fade%20out%20siblings%20on,)%20%7B%20opacity:%200.5;%20%7D to figure out how to select and style a not hover item. */
-	/* :has(a:hover) selects any link that's being hovered in ol. li:not(:has(a:hover)) selects list items that do not have a hovered link inside them, or all the other links not being hovered. Then h2 a targets the actual link inside the non-hovered items, which I then set the opacity to .3. */
-	&:has(a:hover) li:not(:has(a:hover)) h2 a {
-		opacity: 0.3;
+	@media (width >= 770px) {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
 	}
 
-	& > li {
-		counter-increment: item;
-		text-align: start;
+	/* ---------------- preview-pane ---------------- */
+	.preview-pane {
+		display: block;
+		position: fixed;
+		inset: 0;
+		z-index: 2;
+		pointer-events: none;
 
-		& > h2 {
-			font-size: var(--font-size-h2);
-			line-height: var(--line-height-h2);
-			font-family: var(--font-header);
-			font-weight: 500;
-			text-transform: uppercase;
-			position: relative;
+		iframe {
+			border: none;
+			pointer-events: none;
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity var(--transition), visibility var(--transition);
+		}
+	}
 
+	/* ---------------- h1 ---------------- */
+	h1 {
+		font-family: var(--font-index);
+		font-size: var(--fs-h1);
+		font-weight: var(--fw-semi);
+		line-height: var(--lh-small);
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		flex: 1;
+		display: grid;
+		place-content: center;
 
-			&::before {
-				content: "/0" counter(item);
-				font-size: 0.9rem;
-				font-weight: 400;
-				letter-spacing: normal;
-				vertical-align: top;
-				line-height: 2rem;
-				padding-inline-end: var(--padding-medium);
+		@media (width >= 770px) {
+			text-align: start;
+			display: block;
+		}
 
-				@media (width < 1270px) {
-					padding-inline-end: var(--padding-small);
-				}
-			}
+		#name {
+			color: var(--color-accent);
+			cursor: default;
 
-			& > a {
-				display: inline-block;
-			}
-
-			/* ---------------- iframe Website Preview ---------------- */
-			/* I remembered Lucy using iframe on our last binding site to show a window preview of a linked site, and I wanted to similarly show an iframe preview of the linked site on hover. */
-			/* I referenced https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe to understand the basic functionality and then in combination with this forum https://stackoverflow.com/questions/23251569/preview-page-on-link-hover so I knew which css elements needed styling.   */
-			/* I wrapped the iframe in a div so it could be easier to style the borders, box-shadow, the border-radius, etc. as well as to keep the position aboslute for the container and static for the actual iframe preview. I set the iframe's necessary width and height. I temporarily have all the previews located 100% block-end, but I'd want each one to appear at a different location on my next round of edits.  */
-			& > .preview {
-				position: absolute;
-				inset-block-start: 100%;
-				inset-inline-start: 0;
-				width: 400px;
-				height: 270px;
+			&::after {
+				content: "";
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				inline-size: 20rem;
+				block-size: 20rem;
+				background-image: url('assets/sooim.jpg');
+				background-size: cover;
+				background-position: center;
 				opacity: 0;
 				visibility: hidden;
+				transition: opacity var(--transition), visibility var(--transition);
+				z-index: 2;
 				pointer-events: none;
-				/* transform: translateY(10px); */
-				transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-				z-index: 100;
-				/* border: .5px solid var(--color-text); */
-				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-				background-color: white;
-				/* border-radius: 25px; */
-				overflow: hidden;
-
-				& > iframe {
-					width: 100%;
-					height: 100%;
-					border: none;
-					pointer-events: none;
-				}
 			}
 
-			&:hover > .preview {
+			&:hover::after {
 				opacity: 1;
 				visibility: visible;
-				/* transform: translateY(0); */
-			}
-		}
-
-		&:nth-child(1) {
-			grid-column: 3 / 11;
-			grid-row: 1;
-			
-			h2 > a:hover {
-				font-family: var(--font-manuscript);	
-				font-weight: 800;
-				transform: scaleY(1.6);
-			}
-		}
-
-		&:nth-child(2) {
-			grid-column: 8 / 12;
-			grid-row: 2;
-
-			h2 > a:hover {
-				font-family: var(--font-spread);	
-			}
-		}
-
-		&:nth-child(3) {
-			grid-column: 5 / 12;
-			grid-row: 3;
-			
-			h2 > a:hover {
-				font-family: var(--font-binding);	
-			}
-		}
-
-		&:nth-child(4) {
-			grid-column: 3 / 12;
-			grid-row: 4;
-
-			h2 > a:hover {
-				font-family: var(--font-links);	
-			}
-		}
-
-		&:nth-child(5) {
-			grid-column: 6 / 12;
-			grid-row: 5;
-
-			h2 > a:hover {
-				font-family: var(--font-functions);	
 			}
 		}
 	}
+
+	/* ---------------- ol ---------------- */
+	ol {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+		counter-reset: item;
+		text-align: center;
+
+		@media (width >= 770px) { 
+			text-align: start; 
+		}
+
+		&:has(a:hover) li:not(:has(a:hover)) h2 a { 
+			opacity: 0.3; 
+		}
+
+		li {
+			counter-increment: item;
+
+			h2 {
+				font-size: var(--fs-h2);
+				font-weight: var(--fw-reg);
+				line-height: var(--lh-small);
+				text-transform: uppercase;
+				height: 1lh;
+
+				&::before {
+					content: "/0" counter(item);
+					font-size: var(--fs-xs);
+					font-weight: var(--fw-light);
+					vertical-align: top;
+					padding-inline-end: var(--space-sm);
+				}
+
+				a { 
+					display: inline-block; 
+				}
+			}
+
+			&:nth-child(1) h2 a:hover { 
+				font-family: var(--font-manuscript); 
+				font-weight: 800; 
+				transform: scaleY(1.6); 
+			}
+
+			&:nth-child(2) h2 a:hover { 
+				font-family: var(--font-spread); 
+			}
+
+			&:nth-child(3) h2 a:hover { 
+				font-family: var(--font-binding); 
+			}
+
+			&:nth-child(4) h2 a:hover { 
+				font-family: var(--font-links); 
+			}
+
+			&:nth-child(5) h2 a:hover { 
+				font-family: var(--font-functions); 
+			}
+		}
+	}
+
+	&:has(ol li:nth-child(1) a:hover) .preview-pane iframe:nth-child(1),
+	&:has(ol li:nth-child(2) a:hover) .preview-pane iframe:nth-child(2),
+	&:has(ol li:nth-child(3) a:hover) .preview-pane iframe:nth-child(3),
+	&:has(ol li:nth-child(4) a:hover) .preview-pane iframe:nth-child(4),
+	&:has(ol li:nth-child(5) a:hover) .preview-pane iframe:nth-child(5) {
+		opacity: 1;
+		visibility: visible;
+	}
 }
+
 
 /* ---------------- Footer ---------------- */
 footer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+	font-size: var(--fs-xs);
+	line-height: var(--lh-big);
+	padding-block-start: var(--space-sm);
 
-	font-family: var(--font-p);
-	font-size: var(--font-size-footer);
-	line-height: var(--line-height-footer);
-	text-wrap: balance;
-
-	& > p {
-		flex-basis: 30%;
-		text-align: start;
-
-		& > a {
-			display: inline-block;
-		}
-	}
-
-	& > ul {
-		display: flex;
-		flex-direction: row;
-		gap: var(--gap);
-
-		& > li > a {
-			text-transform: uppercase;
-			display: inline-block;
-		}
+	p a { 
+		display: inline-block; 
 	}
 }
-
-
-
-/* QUESTIONS TO ADDRESS LATER:
-- So much is dependent on the hover state, what about mobile? How will that look? */
-/* - Make more responsive */
-/* - Add color of the h2s? */
-/* - figure out how to style/what else to put in nav bar */
-/* - consolidate styling once finalized (a links in footer hover state, p typography with nav + footer, nth-child a h2) */
