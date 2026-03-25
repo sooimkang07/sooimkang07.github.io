@@ -6,7 +6,7 @@
 /* ---------------- CSS Variables ---------------- */
 :root {
 	/* ----- Colors ----- */
-	--color-background: #F0F0F0;
+	--color-background: #FAFCFD;
 	--color-text: #000000;
 	
 	/* ----- Fonts ----- */
@@ -22,10 +22,12 @@
 	--line-height-h1: 1em; */
 
 	--font-size-h2: 5rem;
+	--font-weight-h2: 600;
 	--line-height-h2: 1em;
 	--letter-spacing-h2: .03em;
 
 	--font-size-p: 2rem;
+	--font-weight-p: 400;
 	--line-height-p: 1.5em;
 
 	--font-size-footer: 1rem;
