@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fascinate+Inline&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mea+Culpa&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Shippori+Mincho+B1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=DotGothic16&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
 
 
 /* ---------------- Design System Variables ---------------- */
@@ -7,22 +9,22 @@
 	/* Colors */
 	--color-bg: #FAFCFD;
 	--color-text: #000000;
-	--color-accent: #E67A00;
+	--color-accent: #E6602E;
 
 	/* Fonts */
-	--font-index: "Darker Grotesque", sans-serif;
+	--font-index: "Rethink Sans", sans-serif;
 	--font-manuscript: "Roboto Serif", serif;
 	--font-spread: "Fascinate Inline", sans-serif;
 	--font-binding: "DM Sans", sans-serif;
 	--font-links: "DotGothic16", sans-serif;
-	/* --font-functions: ; */
+	--font-functions: "Gaegu", cursive;
 
 	/* Font size */
-	--fs-xs:   clamp(0.75rem, 1.2vw,  1rem);
-	--fs-sm:   clamp(0.875rem, 1.5vw, 1.125rem);
-	--fs-p: clamp(1rem, 2vw, 1.5rem);
-	--fs-h1:   clamp(3.5rem, 8vw, 7rem);
-	--fs-h2:   clamp(2.25rem, 6vw, 3rem);
+	--fs-xs:  clamp(0.75rem, 1.2vw, 1rem);
+	--fs-sm:  clamp(0.875rem, 1.5vw, 1.125rem);
+	--fs-p:   clamp(1rem, 2vw, 1.5rem);
+	--fs-h1:  clamp(3.5rem, 8vw, 7rem);
+	--fs-h2:  clamp(2.25rem, 6vw, 3rem);
 
 	@media (width >= 770px) {
 		--fs-h2: clamp(1.75rem, 3.5vw, 3rem);
@@ -30,12 +32,13 @@
 
 	/* Font weight */
 	--fw-light: 300;
-	--fw-reg: 400;
-	--fw-semi: 600;
+	--fw-reg:   400;
+	--fw-semi:  600;
+	--fw-bold:  800;
 
 	/* Line height */
 	--lh-small: 1em;
-	--lh-big: 1.5em;
+	--lh-big:   1.5em;
 
 	/* Spacing */
 	--space-xs:  0.25rem;
@@ -44,6 +47,12 @@
 	--space-lg:  2rem;
 	--space-xl:  3.5rem;
 	--space-gap: 1.5rem;
+
+	/* Sizing */
+	--size-portrait: 20rem;
+
+	/* Layering */
+	--z-overlay: 2;
 
 	/* Transition */
 	--transition: 0.3s ease;
@@ -62,11 +71,11 @@ body {
 	padding-block: var(--space-sm);
 	padding-inline: var(--space-md);
 
-	@media (width >= 770px)  { 
-		padding-inline: var(--space-lg); 
+	@media (width >= 770px) {
+		padding-inline: var(--space-lg);
 	}
-	
-	@media (width >= 1270px) { 
+
+	@media (width >= 1270px) {
 		padding-inline: var(--space-xl);
 		padding-block-end: var(--space-xl);
 	}
@@ -83,7 +92,7 @@ nav ul a, footer a {
 		content: "";
 		position: absolute;
 		inset-inline-start: 0;
-		top: 100%;
+		inset-block-start: 100%;
 		margin-block-start: 0.2em;
 		inline-size: 100%;
 		block-size: 0.1em;
@@ -117,10 +126,8 @@ header > nav {
 	ul {
 		display: flex;
 		gap: var(--space-gap);
-		line-height: var(--lh-small);
 
-		li a { 
-			text-transform: uppercase; 
+		li a {
 			color: var(--color-text);
 			font-size: var(--fs-xs);
 			font-weight: var(--fw-semi);
@@ -128,6 +135,7 @@ header > nav {
 		}
 	}
 }
+
 
 /* ---------------- Main ---------------- */
 main {
@@ -140,21 +148,19 @@ main {
 
 	@media (width >= 770px) {
 		flex-direction: row;
-		justify-content: space-between;
 		align-items: flex-end;
 	}
 
 	/* ---------------- preview-pane ---------------- */
 	.preview-pane {
-		display: block;
 		position: fixed;
 		inset: 0;
-		z-index: 2;
+		z-index: var(--z-overlay);
 		pointer-events: none;
 
-		iframe {
-			border: none;
-			pointer-events: none;
+		/* Shared styles for all preview children (iframes + image-preview figure) */
+		iframe,
+		.image-preview {
 			position: absolute;
 			inset: 0;
 			inline-size: 100%;
@@ -163,11 +169,22 @@ main {
 			visibility: hidden;
 			transition: opacity var(--transition), visibility var(--transition);
 		}
+
+		iframe {
+			border: none;
+			pointer-events: none;
+		}
+
+		.image-preview {
+			pointer-events: none;
+			background-image: url('assets/notateCover.jpg');
+			background-size: cover;
+			background-position: center;
+		}
 	}
 
 	/* ---------------- h1 ---------------- */
 	h1 {
-		font-family: var(--font-index);
 		font-size: var(--fs-h1);
 		font-weight: var(--fw-semi);
 		line-height: var(--lh-small);
@@ -190,18 +207,18 @@ main {
 			&::after {
 				content: "";
 				position: fixed;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				inline-size: 20rem;
-				block-size: 20rem;
+				inset-block-start: 50%;
+				inset-inline-start: 50%;
+				translate: -50% -50%;
+				inline-size: var(--size-portrait);
+				block-size: var(--size-portrait);
 				background-image: url('assets/sooim.jpg');
 				background-size: cover;
 				background-position: center;
 				opacity: 0;
 				visibility: hidden;
 				transition: opacity var(--transition), visibility var(--transition);
-				z-index: 2;
+				z-index: var(--z-overlay);
 				pointer-events: none;
 			}
 
@@ -221,12 +238,12 @@ main {
 		counter-reset: item;
 		text-align: center;
 
-		@media (width >= 770px) { 
-			text-align: start; 
+		@media (width >= 770px) {
+			text-align: start;
 		}
 
-		&:has(a:hover) li:not(:has(a:hover)) h2 a { 
-			opacity: 0.3; 
+		&:has(a:hover) li:not(:has(a:hover)) h2 a {
+			opacity: 0.3;
 		}
 
 		li {
@@ -237,7 +254,7 @@ main {
 				font-weight: var(--fw-reg);
 				line-height: var(--lh-small);
 				text-transform: uppercase;
-				height: 1lh;
+				block-size: 1lh;
 
 				&::before {
 					content: "/0" counter(item);
@@ -247,40 +264,31 @@ main {
 					padding-inline-end: var(--space-sm);
 				}
 
-				a { 
-					display: inline-block; 
+				a {
+					display: inline-block;
 				}
 			}
 
-			&:nth-child(1) h2 a:hover { 
-				font-family: var(--font-manuscript); 
-				font-weight: 800; 
-				transform: scaleY(1.6); 
+			&:nth-child(1) h2 a:hover {
+				font-family: var(--font-manuscript);
+				font-weight: var(--fw-bold);
+				transform: scaleY(1.6);
+				font-size: calc(var(--fs-h2) * .9);
 			}
 
-			&:nth-child(2) h2 a:hover { 
-				font-family: var(--font-spread); 
-			}
-
-			&:nth-child(3) h2 a:hover { 
-				font-family: var(--font-binding); 
-			}
-
-			&:nth-child(4) h2 a:hover { 
-				font-family: var(--font-links); 
-			}
-
-			&:nth-child(5) h2 a:hover { 
-				font-family: var(--font-functions); 
-			}
+			&:nth-child(2) h2 a:hover { font-family: var(--font-spread); }
+			&:nth-child(3) h2 a:hover { font-family: var(--font-binding); }
+			&:nth-child(4) h2 a:hover { font-family: var(--font-links); }
+			&:nth-child(5) h2 a:hover { font-family: var(--font-functions); }
 		}
 	}
 
+	/* Preview reveal on list item hover */
 	&:has(ol li:nth-child(1) a:hover) .preview-pane iframe:nth-child(1),
 	&:has(ol li:nth-child(2) a:hover) .preview-pane iframe:nth-child(2),
 	&:has(ol li:nth-child(3) a:hover) .preview-pane iframe:nth-child(3),
 	&:has(ol li:nth-child(4) a:hover) .preview-pane iframe:nth-child(4),
-	&:has(ol li:nth-child(5) a:hover) .preview-pane iframe:nth-child(5) {
+	&:has(ol li:nth-child(5) a:hover) .preview-pane .image-preview {
 		opacity: 1;
 		visibility: visible;
 	}
@@ -293,7 +301,7 @@ footer {
 	line-height: var(--lh-big);
 	padding-block-start: var(--space-sm);
 
-	p a { 
-		display: inline-block; 
+	p a {
+		display: inline-block;
 	}
 }
