@@ -198,7 +198,6 @@ header {
 
 		a {
 			display: block;
-			position: relative;
 			aspect-ratio: 16 / 9;
 			overflow: hidden;
 			background-color: #e7e4de;
