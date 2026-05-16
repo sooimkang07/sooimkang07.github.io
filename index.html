@@ -2,71 +2,110 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Links Project</title>
-		<link href="assets/icons/favicon.ico" rel="icon" sizes="any">
+		<title>Sooim Kang</title>
 		<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml">
+		<link href="assets/icons/32.png" rel="icon" type="image/png" sizes="32x32">
+		<link href="assets/icons/16.png" rel="icon" type="image/png" sizes="16x16">
+		<link href="assets/icons/64.png" rel="icon" type="image/png" sizes="64x64">
 		<link href="assets/icons/touch.png" rel="apple-touch-icon">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="reset.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
-		<meta name="description" content="Sooim Kang's collection of coded projects exploring typography, interaction, and digital design created for Typography & Interaction at Parsons School of Design.">
+		<script defer src="script.js"></script>
 	</head>
 
 	<body>
-		<header>
-			<nav>
-				<a href="index.html">Sooim Kang</a>
-				<ul>
-					<li><a href="https://www.linkedin.com/in/sooimkang/" target="_blank">LinkedIn</a></li>
-					<li><a href="https://sooimkang.com/" target="_blank">Portfolio</a></li>
-					<li><a href="https://github.com/sooimkang07" target="_blank">GitHub</a></li>
-					<li><a href="mailto:sooimkang1015@gmail.com">Email</a></li>
-				</ul>
-			</nav>
-		</header>
-
 		<main>
-			<section class="preview-pane">
-				<iframe src="/manuscript"></iframe>
-				<iframe src="https://noor2025-design.github.io/spread"></iframe>
-				<iframe src="/binding"></iframe>
-				<iframe src="/links"></iframe>
-				<figure class="image-preview"></figure>
+			<header>
+				<nav>
+					<hgroup>
+						<p>Product Designer</p>
+						<p>Based in New York</p>
+					</hgroup>
+					<button aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+					<a href="#about">About</a>
+					<ul>
+						<li><a href="#about">About</a></li>
+						<li><a href="mailto:sooimkang@gmail.com">Email</a></li>
+						<li><a href="https://www.linkedin.com/in/sooimkang/" target="_blank" rel="noopener">LinkedIn</a></li>
+						<li><a href="https://www.instagram.com/sooimkang/" target="_blank" rel="noopener">Instagram</a></li>
+						<li><a href="https://github.com/sooimkang07" target="_blank" rel="noopener">GitHub</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<section class="project-cards">
+				<ul>
+					<li>
+						<a href="/manuscript" target="_blank" rel="noopener">
+							<iframe src="/manuscript" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+						</a>
+						<span class="label" aria-hidden="true">
+							<span>/01</span>
+							<span>Manuscript</span>
+						</span>
+					</li>
+					<li>
+						<a href="https://noor2025-design.github.io/spread" target="_blank" rel="noopener">
+							<iframe src="https://noor2025-design.github.io/spread" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+						</a>
+						<span class="label" aria-hidden="true">
+							<span>/02</span>
+							<span>Spread</span>
+						</span>
+					</li>
+					<li>
+						<a href="/binding" target="_blank" rel="noopener">
+							<iframe src="/binding" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+						</a>
+						<span class="label" aria-hidden="true">
+							<span>/03</span>
+							<span>Binding</span>
+						</span>
+					</li>
+					<li>
+						<a href="/links" target="_blank" rel="noopener">
+							<iframe src="/links" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+						</a>
+						<span class="label" aria-hidden="true">
+							<span>/04</span>
+							<span>Links</span>
+						</span>
+					</li>
+					<li>
+						<a href="https://github.com/sooimkang07/functions" target="_blank" rel="noopener">
+							<img src="assets/notateCover.jpg" alt="Functions project cover">
+						</a>
+						<span class="label" aria-hidden="true">
+							<span>/05</span>
+							<span>Functions</span>
+						</span>
+					</li>
+				</ul>
+
+				<h1 id="name">
+					<img src="assets/name.png" alt="Sooim Kang">
+				</h1>
 			</section>
 
-			<h1>Hi there!<br><span>I'm <span id="name">Sooim Kang</span>.</span></h1>
+			<section class="about" id="about">
+				<p>Hi there! I'm a Product Designer based in New York drawn to ambiguous problems and early-stage ideas, where good design isn't just the interface but the decisions behind it. A lot of my work sits at the intersection of product and systems thinking, balancing competing constraints to create something that actually holds up.</p>
+				<p><span>Here are the projects I hard-coded in </span><a href="https://typography-interaction-2526.github.io/" target="_blank">Typography & Interaction ('25–'26)</a><span> at The New School using HTML, CSS, and JavaScript while pursuing my </span><a href="hhttps://www.newschool.edu/parsons/mps-communication-design/" target="_blank">Masters in Communication Design.</a></p>
+				<p><span>Outside of design, I'm usually making my way through my </span><a href="https://letterboxd.com/sooimkang/" target="_blank">Letterboxd</a><span> watchlist, walking around the city with friends, or trying a new spot on </span><a href="https://beliapp.co/app/sooimkang" target="_blank">Beli</a><span>.</span></p>
+				<p>I'm looking for thoughtful product teams building ambitious tools with real cultural or behavioral impact. Feel free to reach out!</p>
 
-			<ol>
-				<li>
-					<h2>
-						<a href="/manuscript" target="_blank">Manuscript</a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a href="https://noor2025-design.github.io/spread" target="_blank">Spread</a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a href="/binding" target="_blank">Binding</a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a href="/links" target="_blank">Links</a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a href="https://github.com/sooimkang07/functions" target="_blank">Functions</a>
-					</h2>
-				</li>
-			</ol>
+				<figure>
+					<img src="assets/about-me/team.jpg" alt="Sooim with two other teammates at a Hackathon">
+					<img src="assets/about-me/music.png" alt="Sooim listening to music with headphones on">
+					<img src="assets/about-me/me.jpg" alt="Portrait of Sooim">
+					<img src="assets/about-me/brainstorming.jpg" alt="Brainstorming session of Sooim at a whiteboard">
+					<img src="assets/about-me/photo.jpg" alt="Sooim taking a photo of the sky on a mountain hike">
+				</figure>
+			</section>
 		</main>
 
 		<footer>
-			<!-- <p>Projects made in <a href="https://typography-interaction-2526.github.io/" target="_blank">Typography & Interaction ('25–'26)</a> at The New School using HTML, CSS, and JavaScript.</p> -->
+			<p>© 2026 Sooim Kang</p>
 		</footer>
 	</body>
 </html>
