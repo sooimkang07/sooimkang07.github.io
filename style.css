@@ -203,16 +203,6 @@ header {
 			overflow: hidden;
 			background-color: #e7e4de;
 
-			iframe {
-				display: block;
-				position: absolute;
-				inset: 0;
-				inline-size: 100%;
-				block-size: 100%;
-				border: none;
-				pointer-events: none;
-			}
-
 			img {
 				display: block;
 				inline-size: 100%;
